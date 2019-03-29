@@ -69,3 +69,24 @@
   }
 }
 
+.col.span_1.delete-button {
+  text-align: center;
+}
+
+.delete-button i {
+  top: 5px;
+}
+
+.delete-post-button i:hover {
+  cursor: pointer;
+}
+
+.js-loading i {
+  opacity: 0;
+}
+
+.js-loading {
+  background-image: url('../../images/reload.gif');
+  background-repeat: no-repeat;
+  min-height: 40px;
+}

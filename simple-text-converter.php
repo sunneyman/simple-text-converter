@@ -96,3 +96,5 @@ function get_simple_text_converter_url() {
 }
 
 run_simple_text_converter();
+
+require plugin_dir_path( __FILE__ ) . 'includes/delete-post.php';
