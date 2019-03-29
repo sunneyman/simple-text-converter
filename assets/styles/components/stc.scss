@@ -1,0 +1,96 @@
+.stc {
+  &--area {
+    > * + * {
+      margin-top: 1rem;
+    }
+  }
+
+  &--panel {
+    > * + * {
+      margin-left: .5rem;
+    }
+  }
+
+  &--element {
+    position: relative;
+    line-height: 1.5;
+    word-wrap: break-word;
+
+    input {
+      position: relative;
+      z-index: 1;
+    }
+
+    &__buttons {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 0;
+      z-index: 9;
+
+      > * + * {
+        margin-left: .5rem;
+      }
+
+      ~ input {
+        padding-right: 8.7rem;
+      }
+    }
+  }
+
+  &--login-form {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 0;
+
+    //input {
+    //  padding-left: 20px!important;
+    //  padding-right: 20px!important;
+    //}
+
+    &__title {
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    &__description {
+      font-size: 16px;
+      color: #999;
+    }
+
+    &__box > * + * {
+      margin-top: 30px;
+    }
+
+    //.submit {
+    //  text-align: center;
+    //}
+    //
+    //.mepr-login-actions {
+    //  text-align: center;
+    //}
+    //
+    //.minimal-form-input {
+    //  padding-top: 5px;
+    //}
+  }
+}
+
+.js-simple-text-conterter {
+  background-color: #faf6f2!important;
+
+  .container.main-content {
+    max-width: none!important;
+  }
+
+  #header-outer,
+  .container-wrap {
+    background-color: #faf6f2!important;
+  }
+
+  #footer-outer {
+    background-color: #f8f1ea!important;
+  }
+}

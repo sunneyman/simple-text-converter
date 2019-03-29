@@ -1,0 +1,39 @@
+{
+  "name": "simple-text-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-imagemin": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "*",
+    "del": "^3.0.0",
+    "gulp": "*",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^3.4.2",
+    "gulp-if": "^2.0.2",
+    "gulp-include": "^2.3.1",
+    "gulp-js-minify": "0.0.3",
+    "gulp-minify": "^2.1.0",
+    "gulp-optimize-js": "*",
+    "gulp-rev": "^7.1.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-bulk-import": "^1.0.1",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "gulp.spritesmith": "^6.5.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "replace-in-file": "*",
+    "rev-del": "^1.0.5",
+    "vinyl-buffer": "^1.0.0",
+    "gulp-uglify-es": "*"
+  },
+  "author": "Savelii D.",
+  "license": "ISC"
+}

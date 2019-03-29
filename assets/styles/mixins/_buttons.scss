@@ -1,0 +1,71 @@
+@mixin green-button() {
+ // @include green-button();
+  outline: none;
+  border: none;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1; // set only relative value
+  padding: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  transition: 0.3s ease;
+
+  &_primary {
+    background: $color-primary;
+    color: white;
+
+    box-shadow: 0 2px 17px -1px rgba(76, 196, 154, 0.52);
+
+    &:hover{
+      background: $color-primary-hover;
+      box-shadow: 0 2px 13px -5px rgba(76, 196, 154, 1);
+    }
+  }
+
+  &_secondary {
+    color: #555;
+
+    &.is-active {
+      background-color: $color-secondary-active;
+    }
+
+    &:not(.is-active):hover{
+      background: #fbfbfb;
+      box-shadow: 0 2px 13px -5px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  &_wide {
+    min-width: 25rem;
+    padding: 14px 26px;
+  }
+
+  &_icon {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: inherit;
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &[disabled] {
+    opacity: .5;
+    pointer-events: none;
+  }
+}
+

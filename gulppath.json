@@ -1,0 +1,15 @@
+{
+
+  "input": {
+    "styles": "assets/styles",
+    "scripts": "assets/scripts"
+  },
+
+  "output": {
+    "resources": "dist",
+    "build": "dist/build",
+    "styles": "public/css",
+    "scripts": "public/js"
+  }
+
+}

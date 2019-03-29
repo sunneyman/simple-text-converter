@@ -1,0 +1,261 @@
+.stc--vain-view {
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 34pt;
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 30pt;
+    }
+  }
+
+  h2 {
+    font-size: 32pt;
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 26pt;
+    }
+  }
+
+  h3 {
+    font-size: 30pt;
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 25pt;
+    }
+  }
+
+  h4 {
+    font-size: 27pt;
+    line-height: 1.02;
+    font-weight: 300;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 23pt;
+    }
+  }
+
+  h5 {
+    font-size: 23pt;
+    line-height: 1.02;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 19pt;
+    }
+  }
+
+  h6 {
+    font-size: 20pt;
+    font-weight: 300;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 15pt;
+    }
+  }
+
+  p {
+    font-size: 17pt;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: -.2pt;
+
+    @media (max-width: $padmini) {
+      font-size: 13pt;
+    }
+  }
+
+  div {
+    font-size: 17pt;
+    font-weight: 300;
+    line-height: 0;
+  }
+
+  textarea,
+  input[type='text'] {
+    width: 100%;
+    outline: none;
+    font-size: 17pt;
+    font-weight: 300;
+    line-height: 1;
+    padding: 2.2rem 3rem;
+    border: none;
+    position: relative;
+    border-radius: 0;
+    -webkit-appearance: none;
+    background-color: darken($color-background, 2%);
+
+    @media (max-width: $padmini) {
+      padding: 1.5rem 2.2rem;
+      font-size: 13pt;
+    }
+  }
+
+  textarea[name="stc"] {
+    line-height: 1.5;
+    padding: 2.2rem 3rem!important;
+    width: 100%!important;
+  }
+
+  input,
+  select {
+    text-overflow: ellipsis;
+    box-shadow: 0 2px 16px -7px rgba(0, 0, 0, 0.35);
+    transition: ease .3s;
+
+    &:focus {
+      box-shadow: 0 2px 19px -6px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  textarea {
+    box-shadow: 0 2px 16px -7px rgba(0, 0, 0, 0.35);
+    transition: ease .3s;
+
+    &:focus {
+      box-shadow: 0 2px 19px -6px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  .jqselect {
+    position: relative;
+
+    select {
+      display: none;
+    }
+
+    .jq-selectbox {
+      &__select {
+        padding-right: 5rem;
+        cursor: pointer;
+        position: relative;
+        z-index: 9;
+
+        &-text {
+          position: relative;
+          line-height: 1.2;
+        }
+      }
+
+      &__trigger {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 5rem;
+
+        &-arrow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -25%);
+
+          border: 7px solid transparent;
+          border-top-color: $color-font-dark;
+
+          transition: ease .3s;
+        }
+      }
+
+      &__dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding-top: 1rem;
+        z-index: 10;
+
+        ul {
+          padding: 0;
+          box-shadow: 0 3px 30px 10px rgba(0, 0, 0, .05);
+          background-color: #fff;
+        }
+
+        li {
+          width: 100%;
+          outline: none;
+          font-size: 1.6rem;
+          line-height: 1;
+          padding: 1.7rem 2.1rem;
+          position: relative;
+          box-sizing: padding-box;
+          background-color: #fff;
+          cursor: pointer;
+          transition: ease .15s;
+
+          + li {
+            border-top: 1px solid $color-line-light;
+          }
+
+          &:hover {
+            background-color: $color-font-lighten;
+          }
+
+          &.sel,
+          &.selected {
+            background-color: $color-bg-secondary;
+          }
+        }
+      }
+    }
+
+    &.opened {
+      .jq-selectbox {
+        &__trigger-arrow {
+          transform: translate(-50%, -75%) rotateZ(180deg);
+        }
+      }
+    }
+  }
+
+  .switcher-line {
+    white-space: nowrap;
+
+    &:nth-of-type(odd) {
+      font-weight: 400;
+    }
+  }
+}
