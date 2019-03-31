@@ -3586,88 +3586,8 @@ a img.aligncenter {
   background-repeat: no-repeat;
   min-height: 40px; }
 
-.delete-dropdown {
-  position: absolute;
-  top: -30px;
-  left: -140px;
-  min-width: 150px;
-  font-size: .7em;
-  padding: 7px;
-  text-transform: capitalize;
-  opacity: .6;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 500; }
-
 .semi-opaque {
   opacity: .2; }
-
-.confirm-message,
-.after-delete-message {
-  position: fixed;
-  top: 50px;
-  left: 300px;
-  min-width: 600px;
-  font-size: 1.3em;
-  text-align: center;
-  background: rgba(77, 196, 154, 0.69);
-  border-radius: 3px;
-  opacity: 1 !important;
-  padding: 7px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 500;
-  z-index: 100;
-  padding: 2% 0; }
-
-.confirm-buttons-holder {
-  position: relative;
-  color: white;
-  top: 20px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 5px 25%;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center; }
-
-.confirm-button {
-  width: 200px;
-  background-color: #ff6749;
-  border-radius: 10px;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: .3s background-color; }
-
-.confirm-button:hover {
-  background-color: #ff2b00; }
-
-.cancel-button {
-  width: 200px;
-  background-color: #088aff;
-  border-radius: 10px;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: .3s background-color; }
-
-.cancel-button:hover {
-  background-color: #0850ff; }
-
-.continue-button {
-  width: 200px;
-  background-color: #086c09;
-  border-radius: 10px;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 10px;
-  cursor: pointer;
-  transition: .3s background-color; }
-
-.continue-button:hover {
-  background-color: #054606; }
 
 .invisible {
   opacity: 0; }
