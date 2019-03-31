@@ -1,95 +1,117 @@
-var clicker = jQuery('.delete-post-button>i');
+(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(jQuery);
+    }
 
-clicker.removeClass('invisible'); // if plugin is not available, trash icon will not be displayed
-
-    clicker.mouseenter((event)=>{
-        this.dropdown = document.createElement('div');
-        this.dropdown.innerHTML = "Remove Document";
-        this.dropdown.classList.add('delete-dropdown');
-        event.target.append(this.dropdown);
-    });
-
-    clicker.mouseleave((event)=>{
-        this.dropdown.remove();
-    });
-
-jQuery('.delete-post-button').click(function(event) {
-
-    var postId = event.target.attributes['data-name'].value;
-    var elemHolder = event.target.parentNode;
-
-    this.confirmMessage = document.createElement('div');
-    this.confirmMessage.classList.add('confirm-message');
-    this.confirmMessage.innerHTML="Are you sure? This may not be undone.";
-    document.body.append(this.confirmMessage);
-
-    this.buttonsHolder = document.createElement('div');
-    this.buttonsHolder.classList.add('confirm-buttons-holder');
-    this.confirmMessage.append(this.buttonsHolder);
-
-    this.confirmButton = document.createElement('div');
-    this.confirmButton.classList.add('confirm-button');
-    this.confirmButton.innerHTML="Sure!";
-    this.buttonsHolder.append(this.confirmButton);
-
-    this.cancelButton = document.createElement('div');
-    this.cancelButton.classList.add('cancel-button');
-    this.cancelButton.innerHTML="No, cancel.";
-    this.buttonsHolder.append(this.cancelButton);
-
-    this.cancelButton.addEventListener('click',(e)=>{
-        e.target.parentNode.parentNode.remove();
-    });
+}(function($) {
 
 
-    const confirmDelete = function(elemHolder) {
+    var clicker = jQuery('.delete-post-button>i');
 
-            this.confirmMessage = document.createElement('div');
-            this.confirmMessage.classList.add('after-delete-message');
-            this.confirmMessage.innerHTML="Your document has been deleted.";
-            document.body.append(this.confirmMessage);
+    clicker.removeClass('invisible'); // if plugin is not available, trash icon will not be displayed
 
-            this.buttonsHolder = document.createElement('div');
-            this.buttonsHolder.classList.add('confirm-buttons-holder');
-            this.confirmMessage.append(this.buttonsHolder);
+        clicker.mouseenter((event)=>{
+            this.dropdown = document.createElement('div');
+            this.dropdown.innerHTML = "Remove Document";
+            this.dropdown.classList.add('delete-dropdown');
+            event.target.append(this.dropdown);
+        });
 
-            this.continueButton = document.createElement('div');
-            this.continueButton.classList.add('cancel-button');
-            this.continueButton.innerHTML="Press to continue";
-            this.buttonsHolder.append(this.continueButton);
+        clicker.mouseleave((event)=>{
+            this.dropdown.remove();
+        });
 
-            elemHolder.parentNode.parentNode.parentNode.remove();
+    jQuery('.delete-post-button').click(function(event) {
 
-            this.continueButton.addEventListener('click', (e)=>{
-                window.location.reload(true);
-            });
-    };
+        var postId = event.target.attributes['data-name'].value;
+        var nonce = event.target.attributes['data-nonce'].value;
+        var elemHolder = event.target.parentNode;
+
+        console.log(nonce);
+
+        this.confirmMessage = document.createElement('div');
+        this.confirmMessage.classList.add('confirm-message');
+        this.confirmMessage.innerHTML="Are you sure? This may not be undone.";
+        document.body.append(this.confirmMessage);
+
+        this.buttonsHolder = document.createElement('div');
+        this.buttonsHolder.classList.add('confirm-buttons-holder');
+        this.confirmMessage.append(this.buttonsHolder);
+
+        this.confirmButton = document.createElement('div');
+        this.confirmButton.classList.add('confirm-button');
+        this.confirmButton.innerHTML="Sure!";
+        this.buttonsHolder.append(this.confirmButton);
+
+        this.cancelButton = document.createElement('div');
+        this.cancelButton.classList.add('cancel-button');
+        this.cancelButton.innerHTML="No, cancel.";
+        this.buttonsHolder.append(this.cancelButton);
+
+        this.cancelButton.addEventListener('click',(e)=>{
+            e.target.parentNode.parentNode.remove();
+        });
 
 
-    const deletePost = function(e){
-        console.log('Delete confirmed!');
-        e.target.parentNode.parentNode.remove();
+        const confirmDelete = function(elemHolder) {
 
-        var data = {
-            action: 'delete_post',
-            postId
+                this.confirmMessage = document.createElement('div');
+                this.confirmMessage.classList.add('after-delete-message');
+                this.confirmMessage.innerHTML="Your document has been deleted.";
+                document.body.append(this.confirmMessage);
+
+                this.buttonsHolder = document.createElement('div');
+                this.buttonsHolder.classList.add('confirm-buttons-holder');
+                this.confirmMessage.append(this.buttonsHolder);
+
+                this.continueButton = document.createElement('div');
+                this.continueButton.classList.add('cancel-button');
+                this.continueButton.innerHTML="Press to continue";
+                this.buttonsHolder.append(this.continueButton);
+
+                elemHolder.parentNode.parentNode.parentNode.remove();
+
+                this.continueButton.addEventListener('click', (e)=>{
+                    window.location.reload(true);
+                });
         };
 
-        jQuery.ajax({
-            method: 'POST',
-            url: delBtnAjax.url,
-            data: data,
-            beforeSend: function() {
-                elemHolder.classList.add( 'js-loading' );
-                elemHolder.parentNode.parentNode.classList.add( 'semi-opaque' );
-            },
-            complete: function (response) {
-                console.log(response);
-                confirmDelete(elemHolder);
-            },
-        });
-    };
 
-    this.confirmButton.addEventListener('click', deletePost);
+        const deletePost = function(e){
+            // console.log('Delete confirmed!');
+            e.target.parentNode.parentNode.remove();
 
-});
+            var data = {
+                action: 'custom_delete_post',
+                nonce: nonce,
+                id: postId
+            };
+
+            jQuery.ajax({
+                method: 'POST',
+                url: delBtnAjax.url,
+                data: data,
+                beforeSend: function() {
+                    console.log(data,delBtnAjax.url);
+                    elemHolder.classList.add( 'js-loading' );
+                    elemHolder.parentNode.parentNode.classList.add( 'semi-opaque' );
+                },
+                complete: function (response) {
+                    console.log(response);
+                    confirmDelete(elemHolder);
+                },
+            });
+
+            return false;
+        };
+
+        this.confirmButton.addEventListener('click', deletePost);
+
+    });
+
+}));

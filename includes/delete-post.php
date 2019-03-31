@@ -1,4 +1,20 @@
 <?php
+
+add_action( 'wp_ajax_custom_delete_post', 'custom_delete_post' );
+function custom_delete_post(){
+
+    $permission = check_ajax_referer( 'custom_delete_post_nonce', 'nonce', false );
+    if( $permission == false ) {
+        echo 'error';
+    }
+    else {
+        wp_delete_post( $_REQUEST['id'] );
+        echo 'success';
+    }
+    die();
+}
+
+
 global $wp;
 $page = home_url(add_query_arg($wp->request));
 $needle = "/documents/";
@@ -14,20 +30,5 @@ if ( strpos( $page, $needle ) !== false ) :
                 'url' => admin_url('admin-ajax.php')
             )
         );
-    }
-
-    add_action( 'wp_ajax_delete_post', 'my_action_callback' );
-    function my_action_callback() {
-        $post_id = intval( $_POST['postId'] );
-        $force_delete = false;
-        $user = wp_get_current_user();
-        $allowed_roles = array('editor', 'administrator');
-        $post = get_post($post_id);
-
-        if(get_current_user_id() == $post->post_author || array_intersect($allowed_roles, $user->roles )) :
-            wp_delete_post( $post_id, $force_delete );
-            echo "Deleted!";
-            wp_die();
-        else : echo "You are not allowed to do this action"; endif;
     }
 endif;
