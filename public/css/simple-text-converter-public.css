@@ -3566,7 +3566,11 @@ a img.aligncenter {
   content: ""; }
 
 .col.span_1.delete-button {
-  text-align: center; }
+  text-align: right; }
+
+@media (min-width: 690px) {
+  .col.span_1.delete-button {
+    width: 8.5% !important; } }
 
 .delete-button i {
   top: 5px; }
@@ -3588,8 +3592,6 @@ a img.aligncenter {
   left: -140px;
   min-width: 150px;
   font-size: .7em;
-  background: rgba(77, 196, 154, 0.69);
-  border-radius: 4px;
   padding: 7px;
   text-transform: capitalize;
   opacity: .6;

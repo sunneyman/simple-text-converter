@@ -70,7 +70,13 @@
 }
 
 .col.span_1.delete-button {
-  text-align: center;
+  text-align: right;
+}
+
+@media (min-width: 690px) {
+  .col.span_1.delete-button {
+    width: 8.5% !important;
+  }
 }
 
 .delete-button i {
@@ -97,8 +103,8 @@
   left: -140px;
   min-width: 150px;
   font-size: .7em;
-  background: $color-primary;
-  border-radius: 4px;
+  //background: $color-primary;
+  //border-radius: 4px;
   padding: 7px;
   text-transform: capitalize;
   opacity: .6;
