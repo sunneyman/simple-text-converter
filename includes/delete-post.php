@@ -51,6 +51,14 @@ function custom_find_posts(){
 }
 
 
+add_action( 'wp_ajax_custom_get_nonce', 'custom_get_nonce' );
+function custom_get_nonce() {
+    $nonce = wp_create_nonce( 'custom-delete-post'.$_REQUEST['id'] );
+    echo $nonce;
+    die();
+}
+
+
 global $wp;
 $page = home_url(add_query_arg($wp->request));
 $needle = "/documents/";

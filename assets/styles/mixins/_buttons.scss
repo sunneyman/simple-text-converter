@@ -105,3 +105,18 @@
   opacity: 0;
 }
 
+.delete-post-button-js {
+  position: absolute;
+  z-index: 10;
+  right: 2%;
+  top: 33%;
+}
+
+.delete-post-button-js i:hover {
+  cursor: pointer;
+}
+
+.row {
+  padding-bottom:0 !important;
+}
+
