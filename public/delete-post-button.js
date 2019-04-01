@@ -21,7 +21,48 @@
         var nonce = event.target.attributes['data-nonce'].value;
         var elemHolder = event.target.parentNode;
 
+        // jQuery('body div:first-child').addClass('half-opacity');
+
+        var screen = document.createElement('div');
+        jQuery(screen).addClass('magic-screen');
+        document.body.prepend(screen);
+
+        jQuery('body').addClass('no-scroll');
+
+
+        this.confirmMessage = document.createElement('div');
+        this.confirmMessage.classList.add('confirm-message');
+        this.confirmMessage.innerHTML="Are you sure? This may not be undone.";
+        document.body.append(this.confirmMessage);
+
+        this.buttonsHolder = document.createElement('div');
+        this.buttonsHolder.classList.add('confirm-buttons-holder');
+        this.confirmMessage.append(this.buttonsHolder);
+
+        this.confirmButton = document.createElement('div');
+        this.confirmButton.classList.add('button');
+        this.confirmButton.classList.add('button_primary');
+        this.confirmButton.classList.add('button_middle');
+        this.confirmButton.innerHTML="Sure!";
+        this.buttonsHolder.append(this.confirmButton);
+
+        this.cancelButton = document.createElement('div');
+        this.cancelButton.classList.add('button');
+        this.cancelButton.classList.add('button_primary');
+        this.cancelButton.classList.add('button_middle');
+        this.cancelButton.innerHTML="No, cancel.";
+        this.buttonsHolder.append(this.cancelButton);
+
+        this.cancelButton.addEventListener('click',(e)=>{
+            e.target.parentNode.parentNode.remove();
+            // jQuery('body div:first-child').removeClass('half-opacity');
+            screen.remove();
+        });
+
         const deletePost = function(e){
+
+            e.target.parentNode.parentNode.remove();
+            screen.remove();
 
             var data = {
                 action: 'custom_delete_post',
@@ -43,6 +84,6 @@
             });
             return false;
         };
-        deletePost();
+        this.confirmButton.addEventListener('click', deletePost);
     });
 }));

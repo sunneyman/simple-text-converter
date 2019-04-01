@@ -22,7 +22,61 @@
         var nonce = event.target.attributes['data-nonce'].value;
         var elemHolder = event.target.parentNode;
 
+
+        this.confirmMessage = document.createElement('div');
+        this.confirmMessage.classList.add('confirm-message');
+        this.confirmMessage.innerHTML="Are you sure? This may not be undone.";
+        document.body.append(this.confirmMessage);
+
+        this.buttonsHolder = document.createElement('div');
+        this.buttonsHolder.classList.add('confirm-buttons-holder');
+        this.confirmMessage.append(this.buttonsHolder);
+
+        this.confirmButton = document.createElement('div');
+        this.confirmButton.classList.add('confirm-button');
+        this.confirmButton.innerHTML="Sure!";
+        this.buttonsHolder.append(this.confirmButton);
+
+        this.cancelButton = document.createElement('div');
+        this.cancelButton.classList.add('cancel-button');
+        this.cancelButton.innerHTML="No, cancel.";
+        this.buttonsHolder.append(this.cancelButton);
+
+        this.cancelButton.addEventListener('click',(e)=>{
+            e.target.parentNode.parentNode.remove();
+        });
+
+
+        const confirmDelete = function(elemHolder) {
+
+            this.confirmMessage = document.createElement('div');
+            this.confirmMessage.classList.add('after-delete-message');
+            this.confirmMessage.innerHTML="Your document has been deleted.";
+            document.body.append(this.confirmMessage);
+
+            this.buttonsHolder = document.createElement('div');
+            this.buttonsHolder.classList.add('confirm-buttons-holder');
+            this.confirmMessage.append(this.buttonsHolder);
+
+            this.continueButton = document.createElement('div');
+            this.continueButton.classList.add('cancel-button');
+            this.continueButton.innerHTML="Press to continue";
+            this.buttonsHolder.append(this.continueButton);
+
+            elemHolder.parentNode.parentNode.parentNode.remove();
+
+            this.continueButton.addEventListener('click', (e)=>{
+                window.location.reload(true);
+            });
+        };
+
+
+
+
+
         const deletePost = function(e){
+
+            e.target.parentNode.parentNode.remove();
 
             var data = {
                 action: 'custom_delete_post',
@@ -44,7 +98,7 @@
             });
             return false;
         };
-        deletePost();
+        this.confirmButton.addEventListener('click', deletePost);
     });
 
 
