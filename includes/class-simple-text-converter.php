@@ -298,14 +298,14 @@ class Simple_Text_Converter {
 		$code_access = do_shortcode($post->post_content);
 		$has_access  = current_user_can('mepr-active', "rule: {$code_access}") || current_user_can('edit_posts');
 
-    if ($has_access) :
+    // if ($has_access) :
       ?>
 
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 
       <?php
-    endif;
+    //endif;
 	}
 
 	public function update_body_class( $classes ) {
@@ -314,7 +314,7 @@ class Simple_Text_Converter {
 		$code_access = do_shortcode($post->post_content);
 		$has_access  = current_user_can('mepr-active', "rule: {$code_access}") || current_user_can('edit_posts');
 
-  		if ($has_access) 
+  		if ($has_access)
   			$classes[] = 'js-simple-text-converter';
 
 		return $classes;
