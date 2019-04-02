@@ -145,3 +145,150 @@
   }
 }
 
+
+
+.submenu-items div {
+  margin: 15px 0 30px 0;
+}
+
+
+.submenu-items {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 999px) {
+  .submenu-items {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 22px;
+  }
+  .submenu-items div {
+    margin: 8px 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 1px) {
+  body .wpb_animate_when_almost_visible, body .wpb_animate_when_almost_visible.wpb_start_animation {
+    padding-top: 30px;
+  }
+}
+
+.submenu-items {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.submenu-items div:nth-child(1) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.submenu-items div:nth-child(2) {
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+@media (max-width: 1100px) {
+  .header--box {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 600px;
+  }
+
+  .header--box div {
+    width: 80%;
+  }
+
+  .header--save-panel  {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin: 10px auto;
+  }
+
+  .header--control-panel {
+    margin: 10px auto;
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 690px) {
+
+  .header--box div {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .header--save-panel  {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin: 10px auto;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width:  100%;
+    align-items: center;
+  }
+  .header--box .button_save {
+    min-width: 325px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 578px) {
+
+  .header.is-save-panel .header--control-panel {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .header--control-panel .button_wide {
+    width: 90%;
+    margin-bottom: 15px;
+  }
+
+  .header--box .button_save {
+    width:  90%;
+    margin: 0 auto;
+    min-width: 100px;
+  }
+}
+
+.header--save-panel label {
+  margin-bottom: 8px;
+}

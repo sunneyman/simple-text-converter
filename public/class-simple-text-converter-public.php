@@ -108,7 +108,7 @@ class Simple_Text_Converter_Public {
     if ($has_access) :
 
       wp_enqueue_script( 'simple-text-converter', get_simple_text_converter_url() . '/public/js/simple-text-converter-public.js', array(), 1, true );
-      
+
     endif;
 	}
 
@@ -191,8 +191,8 @@ class Simple_Text_Converter_Public {
           </div>
 
           <div class="header--control-panel">
-            <a href="<?php echo get_bloginfo('url'); ?>/help/" target="_blank">How to use</a>
             <button class="button button_primary button_wide" data-stc-action="convert">Convert</button>
+            <a href="<?php echo get_bloginfo('url'); ?>/help/" target="_blank">How to use</a>
           </div>
         </div>
       </header>

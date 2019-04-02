@@ -150,8 +150,7 @@
 }
 
 
-.confirm-message,
-.after-delete-message {
+.confirm-message {
   position: fixed;
   top: 20%;
   left: 20%;
@@ -167,6 +166,21 @@
   font-weight: 500;
   z-index: 100;
   box-shadow: 5px 10px 24px 8px #888888;
+}
+
+@media (max-width: 576px) {
+  .confirm-message {
+    top: 20%;
+    left: 2%;
+    min-width: 96%;
+  }
+  .confirm-buttons-holder {
+    flex-wrap: wrap;
+    margin: 5px 10% !important;
+  }
+  .confirm-buttons-holder div {
+    width: 90%;
+  }
 }
 
 .magic-screen {
