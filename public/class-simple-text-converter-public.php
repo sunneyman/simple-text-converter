@@ -103,7 +103,7 @@ class Simple_Text_Converter_Public {
     global $post;
 
     $code_access = do_shortcode($post->post_content);
-    $has_access  = current_user_can('mepr-active', "rule: {$code_access}") || current_user_can('edit_posts') || (int)$post->post_author === get_current_user_id();
+    $has_access  = current_user_can('mepr-active', "rule: {$code_access}") || current_user_can('edit_posts') || (int)$post->post_author === get_current_user_id() || $post->post_status === 'publish';
 
     if ($has_access) :
 
