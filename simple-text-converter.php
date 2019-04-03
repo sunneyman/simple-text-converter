@@ -16,7 +16,7 @@
  * Plugin Name:       Simple Text Converter
  * Plugin URI:        https://github.com/hisaveliy
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           1.2.0
  * Author:            Saveliy D.
  * Author URI:        https://github.com/hisaveliy
  * License:           GPL-2.0+
