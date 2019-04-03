@@ -3851,7 +3851,7 @@ main {
             -ms-flex-pack: end;
                 justify-content: flex-end; }
         .header--control-panel .button_wide {
-          min-width: 17rem; } }
+          min-width: 5rem; } }
     .header--control-panel > * + * {
       margin-left: 20px; }
     .header--control-panel a {
