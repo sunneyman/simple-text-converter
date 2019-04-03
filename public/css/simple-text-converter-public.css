@@ -3644,7 +3644,7 @@ a img.aligncenter {
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
   z-index: 100;
-  box-shadow: 5px 10px 24px 8px #888888; }
+  box-shadow: 4px 4px 13px -2px rgba(0, 0, 0, 0.3); }
 
 @media (max-width: 576px) {
   .confirm-message {
@@ -3729,6 +3729,10 @@ html {
 
 main {
   padding: 3rem 0; }
+
+#pagination {
+  margin: 20px;
+  width: auto; }
 
 .button {
   outline: none;
