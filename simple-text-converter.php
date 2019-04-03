@@ -9,7 +9,7 @@
  * that starts the plugin.
  *
  * @link              https://github.com/hisaveliy
- * @since             1.0.0
+ * @since             1.2.0
  * @package           Simple_Text_Converter
  *
  * @wordpress-plugin
