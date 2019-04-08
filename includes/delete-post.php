@@ -65,7 +65,7 @@ $needle = "/documents/";
 
 if ( strpos( $page, $needle ) !== false ) :
 
-    wp_enqueue_script('delete-button', plugins_url() . '/simple-text-converter/public/delete-post-button.js', array('jquery'), 1.1, true);
+    wp_enqueue_script('delete-button', plugins_url() . '/simple-text-converter/public/delete-post-button.js', array('jquery'), PLUGIN_NAME_VERSION, true);
 
     add_action( 'wp_enqueue_scripts', 'delete_button_ajax_data', 99 );
     function delete_button_ajax_data(){

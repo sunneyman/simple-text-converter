@@ -107,7 +107,7 @@ class Simple_Text_Converter_Public {
 
     if ($has_access) :
 
-      wp_enqueue_script( 'simple-text-converter', get_simple_text_converter_url() . '/public/js/simple-text-converter-public.js', array(), 1, true );
+      wp_enqueue_script( 'simple-text-converter', get_simple_text_converter_url() . '/public/js/simple-text-converter-public.js', array(), PLUGIN_NAME_VERSION, true );
 
     endif;
 	}

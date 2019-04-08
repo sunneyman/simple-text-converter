@@ -15,6 +15,8 @@
       this.el = document.getElementById(id);
 
       this.cache = '';
+      this.cacheFromUrl = '';
+      this.responseText = '';
 
       if (this.el) {
         this.mode = this.el.dataset.mode;
@@ -55,6 +57,13 @@
     }
 
     _renderLayout(content = '') {
+
+      if (this.cacheFromUrl !== '') {
+        content = this.cacheFromUrl.replace(/<p>/g, "")
+            .replace(/<\/p>/g,"\n")
+            .replace(/<br>/g,"\n");
+      }
+
       const panelButtons = `
         <div class="stc--panel stc--panel__textarea">
           <button class="button button_secondary button_icon" data-action="wrapSelectedByBold"><i class="fas fa-bold"></i></button>
@@ -115,13 +124,12 @@
 
       SimpleTextConverter.toggleSaveButton();
 
-      this._convertTextarea();
+      // this._convertTextarea();
+      this._checkInputIfUrl();
     }
 
     invert() {
-
-     this.convert(null, document.querySelector( '[data-stc-action="convert"]' ));
-
+      this.convert(null, document.querySelector( '[data-stc-action="convert"]' ));
     }
 
     static toggleSaveButton() {
@@ -176,6 +184,7 @@
       SimpleTextConverter.toggleSaveButton();
 
       this._renderLayout(this.cache);
+      this.cache = ""; this.cacheFromUrl = "";
     }
 
     showOutputTab(e, el) {
@@ -190,11 +199,71 @@
       this.addIsActiveClass(e, el);
     }
 
+    _checkInputIfUrl() {
+
+      const boxEl      = this.el.querySelector('.stc--box');
+      const textAreaEl = this.el.querySelector('.stc--element__textarea');
+
+      const initText = textAreaEl.value;
+
+      let self = this;
+
+      const pureThing = initText.replace(/<\/?[^>]+(>|$)/g, "");
+      const allowedUrls = [/https:\/\/ndla.no\/subjects\/subject:[0-9]/g, /https:\/\/munin.buzz\/[12][0-9][0-9][0-9]\/[0-1][0-9]/g];
+
+      let  isUrl = false, domainName;
+
+      if (pureThing.match(allowedUrls[0])) {isUrl = true; domainName = "ndla.no";}
+      if (pureThing.match(allowedUrls[1])) {isUrl = true; domainName = "munin.buzz";}
+
+      if (isUrl) {
+
+        const data = {
+          action: 'get_data_from_other_site',
+          link: pureThing,
+          domainName,
+        };
+
+        $.ajax({
+          method: 'GET',
+          url: window.sta.ajax,
+          data: data,
+          beforeSend: function() {
+            let screen = document.createElement('div');
+            let roller = document.createElement('div');
+            screen.classList.add('magic-screen');
+            screen.innerHTML = "Please wait. We are processing your request....";
+            roller.classList.add( 'js-loading-big' );
+            screen.prepend(roller);
+            $('body').append(screen);
+          },
+          complete: function (response) {
+            self.el.classList.remove( 'js-loading-big' );
+            $('.magic-screen').remove();
+            let resp = JSON.parse(response.responseText);
+            resp.text = resp.text.replace(/<p>/g, "").replace(/<\/p>/g,"\n");
+            self.responseText = resp.text;
+            self.cacheFromUrl = self.handleHTML(resp.text);
+            self._convertTextarea();
+          },
+        });
+      } else this._convertTextarea();
+    }
+
+
     _convertTextarea() {
       const boxEl      = this.el.querySelector('.stc--box');
       const textAreaEl = this.el.querySelector('.stc--element__textarea');
-      const output     = this.handleHTML(textAreaEl.value);
-      this.cache       = textAreaEl.value;
+
+      const text = textAreaEl.value;
+
+      if (this.cacheFromUrl !== '') {
+        this.output     = this.cacheFromUrl;
+        this.cache       = this.cacheFromUrl;
+      } else {
+        this.output     = this.handleHTML(text);
+        this.cache       = textAreaEl.value;
+      }
 
       const panelButtons = `
           <div class="stc--element">
@@ -208,7 +277,7 @@
       boxEl.innerHTML = `
         <div class="stc--area stc--area__output">
           <div class="stc--element stc--element__output stc--element__output--text"> 
-            ${output}
+            ${this.output}
           </div>
 
           <div class="stc--element stc--element__output stc--element__output--code" hidden>
