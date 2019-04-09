@@ -214,7 +214,7 @@
       let  isUrl = false, domainName;
 
       if (pureThing.match(allowedUrls[0])) {isUrl = true; domainName = "ndla.no";}
-      if (pureThing.match(allowedUrls[1])) {isUrl = true; domainName = "munin.buzz";}
+      // if (pureThing.match(allowedUrls[1])) {isUrl = true; domainName = "munin.buzz";}
 
       if (isUrl) {
 
@@ -238,13 +238,23 @@
             $('body').append(screen);
           },
           complete: function (response) {
-            self.el.classList.remove( 'js-loading-big' );
-            $('.magic-screen').remove();
             let resp = JSON.parse(response.responseText);
-            resp.text = resp.text.replace(/<p>/g, "").replace(/<\/p>/g,"\n");
-            self.responseText = resp.text;
-            self.cacheFromUrl = self.handleHTML(resp.text);
-            self._convertTextarea();
+              console.debug(resp);
+              if(resp.status === true) {
+                self.el.classList.remove('js-loading-big');
+                $('.magic-screen').remove();
+                resp.text = resp.text.replace(/<p>/g, "").replace(/<\/p>/g, "\n");
+                self.responseText = resp.text;
+                self.cacheFromUrl = self.handleHTML(resp.text);
+                self._convertTextarea();
+            } else {
+                let screen = document.querySelector('.magic-screen');
+                screen.innerHTML = resp.text;
+                screen.classList.add('smaller-text');
+                screen.onclick = ()=>{
+                    screen.remove();
+                };
+            }
           },
         });
       } else this._convertTextarea();

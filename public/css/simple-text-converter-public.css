@@ -3675,6 +3675,9 @@ a img.aligncenter {
   font-size: 1.5em;
   font-weight: 800; }
 
+.smaller-text {
+  font-size: 1.2em; }
+
 .no-scroll {
   overflow: hidden !important; }
 

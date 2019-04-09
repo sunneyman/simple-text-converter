@@ -4,6 +4,7 @@ function get_data_from_other_site(){
 
     $url = $_REQUEST['link'];
     $domain_name = $_REQUEST['domainName'];
+    $nothing_found_response = "Sorry, we were not able to process your request. Either the link you requested was not attached to any page, or external server could not process it. Click anywhere to continue.";
 
     if (preg_match('/https:\/\/ndla.no\/subjects\/subject:[0-9]/',
         $url) OR preg_match('/https:\/\/munin.buzz\/[12][0-9][0-9][0-9]\/[0-1][0-9]/',
@@ -15,6 +16,8 @@ function get_data_from_other_site(){
 
         $body = $response['body'];
         $check_answer = $response['response']['code'];
+        if($check_answer === 200 ) $request_status = true;
+        else $request_status = false;
 
         if ($domain_name === "ndla.no" && $check_answer=== 200) {
             if ($startPos = strpos($body, '<body>')) {
@@ -28,7 +31,7 @@ function get_data_from_other_site(){
                 $body = strip_tags($body, '<p>');
                 $body = $article_introduction . $body;
             } else {
-                $body = "Nothing found!";
+                $body = $nothing_found_response;
             }
             $result = $body;
         }
@@ -41,7 +44,8 @@ function get_data_from_other_site(){
                 $body = substr($body, $startPos, ($endPos - $startPos) + 7);
                 $body = remove_tags_content($body, '<figcaption>', '</figcaption>');
             } else {
-                $body = "Nothing found!";
+                $body = $nothing_found_response;
+                $request_status = false;
             }
 
 
@@ -75,20 +79,23 @@ function get_data_from_other_site(){
             $result = $main_lead.$body;
             $result = $main_lead = preg_replace('/>\s+</', "><", $result);
         } else {
-            $result = "Empty";
+            $result = $nothing_found_response;
+            $request_status =false;
         }
 
         $report = (object)[
             'text' => $result,
+            'status' => $request_status
         ];
 
         echo json_encode($report);
     }
 
     else {
-        $result = "Sorry, we were not able to process your request. You could try again.";
+        $result = $nothing_found_response;
         $report  = (object) [
             'text' => $result,
+            'status' => false,
         ];
 
         echo json_encode( $report );

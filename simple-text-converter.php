@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PLUGIN_NAME_VERSION', '1.2.1' );
+define( 'PLUGIN_NAME_VERSION', '1.3.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -102,4 +102,4 @@ require plugin_dir_path( __FILE__ ) . 'includes/delete-post.php';
 
 require plugin_dir_path( __FILE__ ) . 'includes/save-current-post-to-cookie.php';
 
-require plugin_dir_path( __FILE__ ) . 'includes/scraping-support.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-simple-text-converter-text-scrapper.php';
